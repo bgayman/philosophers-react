@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-link {
+  background-color: transparent;
+  border-radius: 50px; /* Capsule shape */
+  transition: background-color 0.3s ease;
+  padding: 15px 25px;
+}
+
+/* Add the transparent gray overlay on hover or focus */
+.nav-link:hover, .nav-link:focus {
+  background-color: rgba(128, 128, 128, 0.2); /* Transparent gray */
+}
