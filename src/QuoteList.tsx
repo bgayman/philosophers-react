@@ -3,6 +3,7 @@ import React from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
 import { SearchQuotesQuery, SearchQuotesQueryVariables } from './gql/graphql';
 import QuoteRow from './QuoteRow';
+import LoadingBounce from './LoadingBounce';
 
 export const SEARCH_QUOTES = gql`
   query SearchQuotes($search: String!) {
@@ -55,12 +56,7 @@ export const QuoteList: React.FC<QuoteListProps> = ({ searchTerm }) => {
 
     return (
         <div>
-            {loading && <div style={{ 
-                padding: '20px', 
-                textAlign: 'center', 
-                color: '#666' }}>
-          Loading quotes...
-        </div>}
+            {loading && <LoadingBounce />}
             {error && <p>Error: {error.message}</p>}
             {data?.searchQuotes.length === 0 && (
                 <div style={{

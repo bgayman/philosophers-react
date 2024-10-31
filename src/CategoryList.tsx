@@ -2,6 +2,7 @@ import React from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
 import { SearchCategoriesQuery, SearchCategoriesQueryVariables } from './gql/graphql';
 import CategoryItem from './CategoryItem';
+import LoadingBounce from './LoadingBounce';
 
 // Define your GraphQL query using the `gql` tag
 export const SEARCH_CATEGORIES = gql`
@@ -46,11 +47,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ searchTerm }) => {
       justifyContent: 'space-around',
       gap: '12px'
     }}>
-      {loading && (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          Loading categories...
-        </div>
-      )}
+      {loading && <LoadingBounce />}
 
       {error && (
         <div style={{

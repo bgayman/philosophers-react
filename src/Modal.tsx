@@ -3,14 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import colors from './color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import Spacer from './Spacer';
 
 interface ModalProps {
     children: React.ReactNode;
     isOpen?: boolean;
-    title?: string;
+    backgroundColor?: string;
+    shadowOpacity?: number;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, isOpen = true, title }) => {
+const Modal: React.FC<ModalProps> = ({ children, isOpen = true, backgroundColor = colors.white, shadowOpacity = 0.1 }) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
 
@@ -67,10 +69,10 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen = true, title }) => {
                     padding: 0,
                     border: 'none',
                     borderRadius: '8px',
-                    backgroundColor: colors.white,
+                    backgroundColor: backgroundColor,
                     maxWidth: '500px',
                     width: '100%',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    boxShadow: `0 4px 6px rgba(0, 0, 0, ${shadowOpacity})`,
                 }}
             >
                 {/* Header */}
@@ -81,7 +83,7 @@ const Modal: React.FC<ModalProps> = ({ children, isOpen = true, title }) => {
                     padding: '16px 20px',
                     paddingBottom: '0px',
                 }}>
-                    <div style={{ flexGrow: 1 }}></div>
+                    <Spacer />
                     <button
                         onClick={handleClose}
                         style={{

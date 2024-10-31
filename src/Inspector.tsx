@@ -3,6 +3,7 @@ import { Hashtag } from './Hashtag';
 import SearchBar from './SearchBar';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import TrendingTopics from './TrendingTopics';
+import YouMightLike from './YouMightLike';
 
 // Inspector Component to wrap Search and TrendingTopics
 const Inspector: React.FC = () => {
@@ -31,9 +32,8 @@ const Inspector: React.FC = () => {
             marginBlockStart: 'auto',
             padding: '20px 0px',
         }}>
-            {/* Search component */}
             {!isSearchPath && <SearchBar onSearch={handleSearch} resetOnSubmit={true} />}
-            {/* TrendingTopics component */}
+            <YouMightLike />
             <TrendingTopics hashtags={trendingHashtags} />
         </div>
     );

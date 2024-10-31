@@ -6,6 +6,7 @@ import colors from './color'
 import QuoteHeader from './QuoteHeader';
 import { User } from './User'
 import { useNavigate, useLocation } from 'react-router-dom';
+import Spacer from './Spacer';
 
 const Sidebar: React.FC = () => {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Sidebar: React.FC = () => {
                     ...(isActive ? activeStyle : {}),
                 })}
             >
-                <img src="icStone@100x.svg" alt="stone logo" width="80px" height="80px" />
+                <img src="/icStone@100x.svg" alt="stone logo" width="80px" height="80px" />
 
             </NavLink>
             <NavLink
@@ -137,10 +138,8 @@ const Sidebar: React.FC = () => {
             </button>
 
             {/* Spacer to push the QuoteHeader to the bottom */}
-            <div style={{ flexGrow: 1 }}></div>
-            <NavLink
-                to="/profile"
-                end
+            <Spacer />
+            <div
                 className={"nav-link"}
                 style={{
                     marginBottom: '25px',
@@ -158,7 +157,7 @@ const Sidebar: React.FC = () => {
                         }
                     },
                 }} imageWidth='40px' imageHeight='40px' />
-            </NavLink>
+            </div>
         </div>
     );
 };

@@ -7,6 +7,9 @@ import PhilosopherList from './PhilosopherList';
 import { useParams } from 'react-router-dom';
 import colors from './color';
 import CategoryList from './CategoryList';
+import SuggestedSearch from './SuggestedSearch';
+import SuggestedCategories from './SuggestedCategories';
+import SuggestedPhilosophers from './SuggestedPhilosophers';
 
 const Search: React.FC = () => {
     const { searchTerm } = useParams<{ searchTerm: string }>();
@@ -33,7 +36,7 @@ const Search: React.FC = () => {
 
     return (
         <div style={{
-            maxWidth: '500px',
+            maxWidth: '600px',
             margin: 'auto',
             display: 'flex',
             flexDirection: 'column',
@@ -60,9 +63,19 @@ const Search: React.FC = () => {
                 padding: '20px',
                 flex: 1
             }}>
-                {currentSegment === "Quotes" && <QuoteList searchTerm={currentSearchTerm} />}
-                {currentSegment === "Philosophers" && <PhilosopherList searchTerm={currentSearchTerm} />}
-                {currentSegment === "Categories" && <CategoryList searchTerm={currentSearchTerm} />}
+                {!currentSearchTerm ? (
+                    <>
+                        <SuggestedSearch />
+                        <SuggestedCategories />
+                        <SuggestedPhilosophers />
+                    </>
+                ) : (
+                    <>
+                        {currentSegment === "Quotes" && <QuoteList searchTerm={currentSearchTerm} />}
+                        {currentSegment === "Philosophers" && <PhilosopherList searchTerm={currentSearchTerm} />}
+                        {currentSegment === "Categories" && <CategoryList searchTerm={currentSearchTerm} />}
+                    </>
+                )}
             </div>
         </div>
     );

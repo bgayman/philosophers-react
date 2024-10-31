@@ -2,6 +2,7 @@ import React from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
 import { SearchPhilosopherQuery, SearchPhilosopherQueryVariables } from './gql/graphql';
 import PhilosopherRow from './PhilosopherRow';
+import LoadingBounce from './LoadingBounce';
 
 // Define your GraphQL query using the `gql` tag
 export const SEARCH_PHILOSOPHERS = gql`
@@ -57,11 +58,7 @@ const PhilosopherList: React.FC<PhilosopherListProps> = ({ searchTerm }) => {
       flexDirection: 'column',
       gap: '8px'
     }}>
-      {loading && (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          Loading philosophers...
-        </div>
-      )}
+      {loading && <LoadingBounce />}
       
       {error && (
         <div style={{ 

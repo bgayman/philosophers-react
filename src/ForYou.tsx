@@ -6,6 +6,7 @@ import PostInput from './PostInput';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './User';
 import Divider from './Divider';
+import LoadingBounce from './LoadingBounce';
 
 const GET_QUOTES = gql`
   query GetQuotes {
@@ -108,7 +109,7 @@ const ForYou: React.FC = () => {
           <QuoteRow quote={quote} />
         </div>
       ))}
-      {loading && <p>Loading quotes...</p>}
+      {loading && <LoadingBounce />}
     </div>
   );
 };
