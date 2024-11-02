@@ -36,6 +36,7 @@ const Search: React.FC = () => {
 
     return (
         <div style={{
+            width: '100%',
             maxWidth: '600px',
             margin: 'auto',
             display: 'flex',

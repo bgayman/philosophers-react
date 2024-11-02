@@ -62,6 +62,7 @@ const QuoteRow: React.FC<QuoteRowProps> = React.memo(({ quote, searchTerm, showL
       <div style={{
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'stretch',
         gap: '8px',
         margin: '10px',
       }}>
@@ -90,7 +91,9 @@ const QuoteRow: React.FC<QuoteRowProps> = React.memo(({ quote, searchTerm, showL
           <div style={{
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'stretch',
             gap: '8px',
+            width: '100%',
           }}>
             <NavLink to={`/quote/${quote.id ?? ""}`} style={{
               textDecoration: 'none',
@@ -103,6 +106,7 @@ const QuoteRow: React.FC<QuoteRowProps> = React.memo(({ quote, searchTerm, showL
               }}>
                 {highlightText(quote.quote, searchTerm)}
               </div>
+              <Spacer />
             </NavLink>
             <QuoteFooter quote={quote} />
             <Divider />

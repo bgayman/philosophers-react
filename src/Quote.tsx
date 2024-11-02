@@ -108,12 +108,6 @@ const Quote: React.FC = () => {
         // Share functionality
     };
 
-    useEffect(() => {
-        console.log("Scroll2")
-        window.scrollTo(0, 0);
-    }, []); 
-
-
     if (error) return null;
     if (!data?.quote) return null;
 

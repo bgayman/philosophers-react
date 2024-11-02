@@ -218,8 +218,9 @@ const Category: React.FC = () => {
                         {/* Philosophers Grid */}
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(3, 1fr)',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
                             gap: '20px',
+                            justifyItems: 'center',
                         }}>
                             {data.category.associatedPhilosophers.map((philosopher) => (
                                 <NavLink

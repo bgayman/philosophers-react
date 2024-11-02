@@ -14,6 +14,9 @@ import { useLocation } from 'react-router-dom';
 import Category from './Category';
 import Quote from './Quote';
 import ScrollToTop from './ScrollToTop';
+import { useMediaQuery } from 'react-responsive';
+import MobileTabBar from './MobileTabBar';
+import Notifications from './Notifications';
 
 
 function App() {
@@ -29,13 +32,12 @@ function App() {
 
 // Create a new component for the app content
 const AppContent: React.FC = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
+  const isTablet = useMediaQuery({ query: '(min-width: 601px) and (max-width: 900px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 901px)' });
   const location = useLocation();
   const state = location.state as { backgroundLocation?: Location };
   const handlePost = (text: string) => { }
-
-  console.log('Current location:', location);
-  console.log('Location state:', state);
-  console.log('Background location:', state?.backgroundLocation);
 
   return (
     <div style={{
@@ -46,10 +48,11 @@ const AppContent: React.FC = () => {
       margin: 'auto',
       justifyContent: 'space-around',
     }}>
-      <Sidebar />
+      {(isTablet || isDesktop) && <Sidebar compact={isTablet} />}
       <div style={{
         flex: 1,
         height: '200vh',
+        width: '100%',
         maxWidth: '600px',
       }}>
         <Routes location={state?.backgroundLocation || location}>
@@ -59,6 +62,7 @@ const AppContent: React.FC = () => {
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/quote/:quoteId" element={<Quote />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Routes>
 
         {/* Modal route - Changed the path and conditional rendering */}
@@ -76,7 +80,11 @@ const AppContent: React.FC = () => {
           </Routes>
         )}
       </div>
-      <Inspector />
+      {/* Only show Inspector on desktop */}
+      {(isTablet || isDesktop) && <Inspector />}
+      
+      {/* Show TabBar only on mobile */}
+      {isMobile && <MobileTabBar />}
     </div>
   );
 };

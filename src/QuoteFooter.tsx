@@ -1,5 +1,6 @@
 import React from 'react';
 import { GetQuotesQuery } from './gql/graphql'; // Import the generated type
+import Spacer from './Spacer';
 
 // Define the type for a single RandomQuote using the generated type
 type RandomQuote = GetQuotesQuery['randomQuotes'][number];
@@ -24,6 +25,7 @@ const QuoteFooter: React.FC<QuoteFooterProps> = ({ quote }) => {
             <div>
                 {quote.year || "A long time ago"}
             </div>
+            <Spacer />
             <div style={{
                 textAlign: 'end',
             }}>

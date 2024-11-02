@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from './color';
 
 const LoadingBounce = () => {
   return (
@@ -21,7 +22,7 @@ const LoadingBounce = () => {
             width: 12px;
             height: 12px;
             border-radius: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: ${colors.blue};
             animation: bounce-loading 0.8s infinite ease-in-out both;
           }
 
@@ -43,7 +44,7 @@ const LoadingBounce = () => {
           }
         `}
       </style>
-      <div className="bounce-container">
+      <div className="bounce-container" style={{margin: '20px'}}>
         <div className="bounce-loading">
           <div></div>
           <div></div>
