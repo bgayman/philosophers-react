@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,14 +40,26 @@
 
 .nav-link {
   background-color: transparent;
-  border-radius: 50px; /* Capsule shape */
+  border-radius: 40px;
+  /* Capsule shape */
   transition: background-color 0.3s ease;
   padding: 15px 25px;
+  text-decoration: none;
 }
 
-/* Add the transparent gray overlay on hover or focus */
-.nav-link:hover, .nav-link:focus {
-  background-color: rgba(128, 128, 128, 0.2); /* Transparent gray */
+/* Add the transparent gray overlay only on hover */
+.nav-link:hover:not(.active) {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+/* Clear background when active */
+.nav-link.active {
+  background-color: transparent;
+}
+
+/* Optional: If you want a different background for active state */
+.nav-link.active:hover {
+  background-color: transparent;
 }
 
 /* Add to your existing CSS file */
@@ -58,8 +71,10 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Mobile-specific styles */
@@ -78,7 +93,7 @@
     left: 0;
     right: 0;
     background: white;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
   }
 }

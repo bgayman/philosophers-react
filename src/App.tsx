@@ -17,6 +17,9 @@ import ScrollToTop from './ScrollToTop';
 import { useMediaQuery } from 'react-responsive';
 import MobileTabBar from './MobileTabBar';
 import Notifications from './Notifications';
+import EBooks from './EBooks';
+import Audiobooks from './Audiobooks';
+import Audiobook from './Audiobook';
 
 
 function App() {
@@ -59,7 +62,11 @@ const AppContent: React.FC = () => {
           <Route path="/" element={<ForYou />} />
           <Route path="/search/:searchTerm" element={<Search />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
+          <Route path="/profile/:username/ebooks" element={<EBooks />} />
+          <Route path="/profile/:username/audiobooks" element={<Audiobooks />} />
+          <Route path="/profile/:username/audiobooks/:audiobookId" element={<Audiobook />} />
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/quote/:quoteId" element={<Quote />} />
           <Route path="/notifications" element={<Notifications />} />

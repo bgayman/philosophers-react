@@ -51,7 +51,7 @@ const QUOTE_QUERY = gql`
   }
 `;
 
-interface QuoteWithDates {
+export interface QuoteWithDates {
     id: string;
     quote: string;
     work?: string | null;

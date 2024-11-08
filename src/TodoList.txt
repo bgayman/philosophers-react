@@ -1,0 +1,24 @@
+Here's the complete updated todo list:
+
+* Mobile experience improvements ← Made good progress but might want to review and polish
+  - ✓ Added viewport meta tag
+  - ✓ Added responsive breakpoints
+  - ✓ Created mobile bottom tab bar
+  - ✓ Made sidebar compact for tablet view
+  - ✓ Made category grid responsive
+* ✓ User profile
+* User generated quotes that persist either through the backend or locally
+* KeyIdeas page
+* KeyIdeas button added to philosopher's profile
+* KeyIdeas search
+* ARObjects
+* Adding WindsorD Font to app ← Started but not completed
+* ✓ Deploying the app
+* ✓ Changing philosophers.app domain to app
+* ✓ Notifications page with birthdays/death days
+* Creating a GuessWho style game where user is shown a random philosopher and LLM backend either Claude or ChatGPT is told a philosopher and both take turns asking questions of the other until one side guesses the correct philosopher
+* Add ebooks button to profiles and build out ebook screens
+* Add audiobooks button to profiles and build out audiobooks screen as well as audio player
+* Add map view of philosopher as well as map modal to profile screen using mapkit.js
+* Add timeline view based on philosopher's birthdate and deathdate
+* 🐛 Fix inspector scrolling bug when main content is shorter than inspector

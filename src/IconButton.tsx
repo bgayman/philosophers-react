@@ -48,6 +48,7 @@ const IconButton: React.FC<IconButtonProps> = ({
                 transition: 'all 0.2s ease',
                 fontWeight: 800,
                 opacity: disabled ? 0.6 : 1,
+                color: color,
             }}
             onClick={!disabled ? onClick : undefined}
             onMouseEnter={e => {
