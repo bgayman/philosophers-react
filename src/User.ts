@@ -5,7 +5,7 @@ export class User {
     username: string;
     id: string;
   
-    static current: User = User.loadFromLocalStorage() ?? User.makeGeneratedUser();
+    static current: User | null = User.loadFromLocalStorage();
   
     constructor(name: string, username: string, id: string) {
       this.name = name;
@@ -34,6 +34,12 @@ export class User {
       } else {
         console.warn('No current user to save.');
       }
+    }
+
+    // Static method to log out the user
+    static logout() {
+      localStorage.removeItem('currentUser');
+      User.current = null;
     }
   
     // Static method to load a user from local storage and return it
