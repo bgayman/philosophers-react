@@ -6,7 +6,7 @@ import { PhilosopherByUsernameQuery, PhilosopherByUsernameQueryVariables, GetQuo
 import colors from './color';
 import { getColorForUUID } from './colorForUUID';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faMapPin, faArrowUpFromBracket, faFileLines, faBook, faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faMapPin, faArrowUpFromBracket, faFileLines, faBook, faHeadphones, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import IconButton from './IconButton';
 import Spacer from './Spacer';
 import { MenuButton } from './MenuButton';
@@ -18,6 +18,7 @@ import { User } from './User';
 import OwlImage from './OwlImage';
 import QuoteImage from './QuoteImage';
 import { QuoteWithDates } from './Quote';
+import PhilosopherBirthplaceModal from './PhilosopherBirthplaceModal';
 
 type RandomQuote = GetQuotesQuery['randomQuotes'][number];
 
@@ -314,6 +315,21 @@ const Profile: React.FC = () => {
                             gap: '8px',
                         }}>
                             <Spacer />
+                            <NavLink to={`/profile/${data.philosopherByUsername.username}/keyIdeas`}>
+                                <div style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    fontSize: '1.5em',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: colors.blue,
+                                    borderRadius: '20px',
+                                    border: `solid 1px ${colors.blue}`,
+                                }}>
+                                    <FontAwesomeIcon icon={faLightbulb} />
+                                </div>
+                            </NavLink>
                             {data.philosopherByUsername.libriVoxGetRequestLinks.length !== 0 &&
                                 <NavLink to={`/profile/${data.philosopherByUsername.username}/audiobooks`}>
                                     <div style={{
@@ -386,15 +402,24 @@ const Profile: React.FC = () => {
                         }}>
                             <b>{data.philosopherByUsername.username}</b> {data.philosopherByUsername.life}
                         </div>
-                        {data.philosopherByUsername.birthLocation && <div style={{
-                            color: colors.blue,
-                            fontWeight: 800,
-                            fontSize: '1.1em',
-                        }}>
-                            <FontAwesomeIcon icon={faMapPin} size='lg' />
-                            &nbsp;
-                            {data.philosopherByUsername.birthLocation.name}
-                        </div>}
+                        {data.philosopherByUsername.birthLocation && <NavLink
+                            to={`/profile/${username}/map`}
+                            state={{ backgroundLocation: location }} style={{
+                                textDecoration: 'none',
+                                color: colors.blue,
+                            }}>
+                            <div style={{
+                                color: colors.blue,
+                                fontWeight: 800,
+                                fontSize: '1.1em',
+                                textDecoration: 'none',
+                            }}>
+
+                                <FontAwesomeIcon icon={faMapPin} size='lg' />
+                                &nbsp;
+                                {data.philosopherByUsername.birthLocation.name}
+
+                            </div></NavLink>}
                         {data.philosopherByUsername.works.length > 0 && <div style={{
                             color: '#666',
                             fontSize: '1.0em',
@@ -577,6 +602,7 @@ const Profile: React.FC = () => {
                             </Modal>
                         }
                     />
+                    <Route path="/map" element={<PhilosopherBirthplaceModal username={username} />} />
                 </Routes>
             )}
         </div>

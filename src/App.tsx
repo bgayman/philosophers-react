@@ -20,6 +20,10 @@ import Notifications from './Notifications';
 import EBooks from './EBooks';
 import Audiobooks from './Audiobooks';
 import Audiobook from './Audiobook';
+import KeyIdea from './KeyIdea';
+import PhilosophersKeyIdeas from './PhilosophersKeyIdeas';
+import PhilosophersMap from './PhilosophersMap';
+import Timeline from './Timeline';
 
 
 function App() {
@@ -54,7 +58,7 @@ const AppContent: React.FC = () => {
       {(isTablet || isDesktop) && <Sidebar compact={isTablet} />}
       <div style={{
         flex: 1,
-        height: '200vh',
+        height: '100vh',
         width: '100%',
         maxWidth: '600px',
       }}>
@@ -62,14 +66,18 @@ const AppContent: React.FC = () => {
           <Route path="/" element={<ForYou />} />
           <Route path="/search/:searchTerm" element={<Search />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/map" element={<PhilosophersMap />} />
+          <Route path="/timeline" element={<Timeline />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/profile/:username/ebooks" element={<EBooks />} />
+          <Route path="/profile/:username/keyIdeas" element={<PhilosophersKeyIdeas />} />
           <Route path="/profile/:username/audiobooks" element={<Audiobooks />} />
           <Route path="/profile/:username/audiobooks/:audiobookId" element={<Audiobook />} />
           <Route path="/category/:categoryId" element={<Category />} />
           <Route path="/quote/:quoteId" element={<Quote />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/keyIdea/:keyIdeaId" element={<KeyIdea />} />
         </Routes>
 
         {/* Modal route - Changed the path and conditional rendering */}

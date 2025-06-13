@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+<script>
+  mapkit.init({
+    authorizationCallback: function (done) {
+      done(
+        'eyJraWQiOiJDTFNDNjZMMkY5IiwidHlwIjoiSldUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiI4RERVUUgyUlVEIiwiaWF0IjoxNzMxNjE0MjA4LCJvcmlnaW4iOiJwaGlsb3NvcGhlcnMuYXBwIiwiZXhwIjoxNzQ3MTYyNjA3fQ._sTFrpLetccUNsU2iuLKZaonkYNENJLKHRKUl1oQlbGdVnjRErTGbsQGuvqVpx4NOu84jG1Mu83WCn4_4bPoJg'
+      );
+    },
+  });
+</script>
 
 <head>
   <meta charset="utf-8" />

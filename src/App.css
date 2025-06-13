@@ -77,6 +77,11 @@
   /* Firefox */
 }
 
+.inspector-content-wrapper {
+  overflow-y: visible;
+  max-height: calc(100vh - 20px);
+}
+
 /* Mobile-specific styles */
 @media (max-width: 768px) {
   body {

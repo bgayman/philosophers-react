@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faForward, faBackward, faGauge } from '@fortawesome/free-solid-svg-icons';
 import colors from './color';
+import Spacer from './Spacer';
 
 interface AudioPlaybackControlsProps {
   audioRef: React.RefObject<HTMLAudioElement>;
@@ -85,7 +86,8 @@ const AudioPlaybackControls: React.FC<AudioPlaybackControlsProps> = ({
       transform: 'translateX(-50%)',
       width: '100%',
       maxWidth: '600px',
-      backgroundColor: colors.white,
+      backgroundColor: `${colors.white}55`,
+      backdropFilter: 'blur(20px)',
       borderTop: `4px solid ${colors.tan}`,
       padding: '16px',
       display: 'flex',
@@ -136,7 +138,8 @@ const AudioPlaybackControls: React.FC<AudioPlaybackControlsProps> = ({
         alignItems: 'center',
         justifyContent: 'center',
         gap: '24px',
-        marginTop: '8px'
+        marginTop: '8px',
+        flexDirection: 'row',
       }}>
         <button 
           onClick={handlePlaybackRateChange}
@@ -148,13 +151,14 @@ const AudioPlaybackControls: React.FC<AudioPlaybackControlsProps> = ({
             padding: '8px',
             display: 'flex',
             alignItems: 'center',
-            gap: '4px'
+            gap: '4px',
+            width: '60px',
           }}
         >
           <FontAwesomeIcon icon={faGauge} />
           <span style={{ fontSize: '14px' }}>{playbackRate}x</span>
         </button>
-        
+        <Spacer />
         <button 
           onClick={handleSkipBackward}
           style={{
@@ -206,6 +210,8 @@ const AudioPlaybackControls: React.FC<AudioPlaybackControlsProps> = ({
           <FontAwesomeIcon icon={faForward} />
           <span style={{ fontSize: '12px' }}>15</span>
         </button>
+        <Spacer />
+        <div style={{ width: '60px' }} />
       </div>
     </div>
   );

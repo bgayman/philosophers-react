@@ -10,6 +10,7 @@ import CategoryList from './CategoryList';
 import SuggestedSearch from './SuggestedSearch';
 import SuggestedCategories from './SuggestedCategories';
 import SuggestedPhilosophers from './SuggestedPhilosophers';
+import KeyIdeaList from './KeyIdeaList';
 
 const Search: React.FC = () => {
     const { searchTerm } = useParams<{ searchTerm: string }>();
@@ -57,6 +58,7 @@ const Search: React.FC = () => {
                     "Quotes",
                     "Philosophers",
                     "Categories",
+                    "Key Ideas",
                 ]} onSelect={handleSegmentChange} />
             </div>
 
@@ -75,6 +77,7 @@ const Search: React.FC = () => {
                         {currentSegment === "Quotes" && <QuoteList searchTerm={currentSearchTerm} />}
                         {currentSegment === "Philosophers" && <PhilosopherList searchTerm={currentSearchTerm} />}
                         {currentSegment === "Categories" && <CategoryList searchTerm={currentSearchTerm} />}
+                        {currentSegment === "Key Ideas" && <KeyIdeaList searchTerm={currentSearchTerm} />}
                     </>
                 )}
             </div>

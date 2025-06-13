@@ -1,0 +1,707 @@
+# Indicates exactly one field must be supplied and this field must not be `null`.
+directive @oneOf on INPUT_OBJECT
+
+# A response containing information about an AR object
+type ARObjectDetailsResponse {
+  # The AR file path for the AR object
+  arFile: String!
+
+  # A description of the AR object
+  description: String
+
+  # The UUID of the AR object
+  id: String
+
+  # The name of the AR object
+  name: String!
+
+  # The original title of the AR object
+  originalTitle: String
+
+  # The philosopher that is associated with the AR object
+  philosopher: PhilosopherResponse!
+
+  # The URL of the AR object's store page
+  storeURL: String
+
+  # Object that holds paths to the images of the AR Object
+  thumbnailImages: ARObjectImages!
+
+  # The type of the AR object
+  type: ARObjectType!
+
+  # The title Wikipedia article about the subject of the AR Object
+  wikiTitle: String
+}
+
+# Object that holds paths to the images of an AR Object
+type ARObjectImages {
+  # The path to the 150x150 thumbnail of the object
+  thumbnail150x150: String!
+
+  # The path to the 300x300 thumbnail of the object
+  thumbnail300x300: String!
+
+  # The path to the 450x450 thumbnail of the object
+  thumbnail450x450: String!
+}
+
+# Object that represents an AR Object
+type ARObjectResponse {
+  # The path to the AR file of the AR Object
+  arFile: String!
+
+  # A description of the AR Object
+  description: String
+
+  # The UUID of the AR Object
+  id: String
+
+  # The name of the AR Object
+  name: String!
+
+  # The original title of the AR Object if it's a book
+  originalTitle: String
+
+  # The UUID of the philosopher associated with the AR Object
+  philosopherID: String!
+
+  # The URL to where the AR Object can be purchased if it's a book
+  storeURL: String
+
+  # Object that holds paths to the images of the AR Object
+  thumbnailImages: ARObjectImages!
+
+  # The type of the AR Object
+  type: ARObjectType!
+
+  # The title Wikipedia article about the subject of the AR Object
+  wikiTitle: String
+}
+
+# Enum that represents the type of an AR Object
+enum ARObjectType {
+  # AR Object is a book
+  book
+
+  # AR Object is an object
+  object
+
+  # AR Object is a statue
+  statue
+}
+
+# A response containing information about a category
+type CategoryDetailsResponse {
+  # The abbreviation of the category
+  abbreviation: String!
+
+  # An array of philosophers associated with the category
+  associatedPhilosophers: [PhilosopherResponse!]!
+
+  # A description of the category
+  description: String!
+
+  # The unique identifier for the category
+  id: String
+
+  # The link to the category's Internet Encyclopedia of Philosophy page
+  iepLink: String
+
+  # An object for images of the category
+  images: CategoryImages!
+
+  # The name of the category
+  name: String!
+
+  # The link to the category's Stanford Encyclopedia of Philosophy page
+  speLink: String
+
+  # The title of the category's Wikipedia page
+  wikiTitle: String!
+}
+
+# An object with paths to images of a category
+type CategoryImages {
+  # A 1200x900 banner alpha-channel image for the category
+  banner1200x900: String!
+
+  # A 400x300 banner alpha-channel image for the category
+  banner400x300: String!
+
+  # A 800x600 banner alpha-channel image for the category
+  banner800x600: String!
+}
+
+# Object with paths to face images of the philosopher
+type FaceImages {
+  # A 250x250px face image of the philosopher
+  face250x250: String!
+
+  # A 500x500px face image of the philosopher
+  face500x500: String!
+
+  # A 750x750px face image of the philosopher
+  face750x750: String!
+}
+
+# Object with paths to full images of the philosopher
+type FullImages {
+  # A 1200x1600px full image of the philosopher
+  full1200x1600: String!
+
+  # A 1260x1680px full image of the philosopher
+  full1260x1680: String!
+
+  # A 420x560px full image of the philosopher
+  full420x560: String!
+
+  # A 600x800px full image of the philosopher
+  full600x800: String!
+
+  # A 840x1120px full image of the philosopher
+  full840x1120: String!
+}
+
+# Object that describes a Gutenberg author
+type GutenbergAuthor {
+  # The year the author was born
+  birthYear: Int
+
+  # The year the author died
+  deathYear: Int
+
+  # The name of the author
+  name: String!
+}
+
+# Object that represents a Gutenberg book
+type GutenbergBook {
+  # The authors of the book
+  authors: [GutenbergAuthor!]!
+
+  # The bookshelves the book belongs to
+  bookshelves: [String!]!
+
+  # Whether the book is copyrighted
+  copyright: Boolean!
+
+  # The formats of the book
+  formats: GutenbergFormats!
+
+  # The ID of the book
+  id: Int!
+
+  # The languages of the book
+  languages: [String!]!
+
+  # The media type of the book
+  mediaType: String!
+
+  # The subjects of the book
+  subjects: [String!]!
+
+  # The title of the book
+  title: String!
+}
+
+# Object with information about the formats of a Gutenberg book
+type GutenbergFormats {
+  # The URL of the EPUB zip file
+  epubZip: String
+
+  # The URL of the HTML file
+  html: String
+
+  # The URL of the image of the book
+  image: String
+
+  # The URL of the Mobi file
+  mobi: String
+
+  # The URL of the plain text file
+  plainText: String
+
+  # The URL of the plain text ISO file
+  plainTextISO: String
+
+  # The URL of the plain text UTF-8 file
+  plainTextUTF8: String
+
+  # The URL of the RDF file
+  rdf: String
+
+  # The URL of the zip file
+  zip: String
+}
+
+# Object with paths to large illustrations of the philosopher
+type IllustrationImages {
+  # A 250x250px illustration of the philosopher
+  ill250x250: String!
+
+  # A 500x500px illustration of the philosopher
+  ill500x500: String!
+
+  # A 750x750px illustration of the philosopher
+  ill750x750: String!
+}
+
+# Object with information about a key idea
+type KeyIdea {
+  # An array of abbreviations for the categories of the key idea
+  categoryAbbrevs: [String!]!
+
+  # The UUID of the key idea
+  id: String
+
+  # The UUID of the philosopher that the key idea is from
+  philosopherId: String
+
+  # Citation for the key idea
+  reference: String!
+
+  # Summary of a key idea of the philosopher
+  text: String!
+}
+
+# A response containing information about a key idea
+type KeyIdeaDetailsResponse {
+  # Key Ideas that largely agree with the key idea
+  agreeingKeyIdeas: [KeyIdeaWithPhilosopher!]
+
+  # An array of abbreviations for the categories of the key idea
+  categoryAbbrevs: [String!]!
+
+  # Key Ideas that largely disagree with the key idea
+  disagreeingKeyIdeas: [KeyIdeaWithPhilosopher!]
+
+  # The UUID of the key idea
+  id: String
+
+  # The philosopher that the key idea is from
+  philosopher: PhilosopherResponse!
+
+  # Citation for the key idea
+  reference: String!
+
+  # Summary of a key idea of the philosopher
+  text: String!
+}
+
+# A response containing information about a key idea and its associated philosopher
+type KeyIdeaWithPhilosopher {
+  # An array of abbreviations for the categories of the key idea
+  categoryAbbrevs: [String!]!
+
+  # The UUID of the key idea
+  id: String
+
+  # The philosopher that the key idea is from
+  philosopher: PhilosopherResponse!
+
+  # Citation for the key idea
+  reference: String!
+
+  # Summary of a key idea of the philosopher
+  text: String!
+}
+
+# Object that represents a LibriVox author
+type LibriVoxAuthor {
+  dateOfBirth: String
+  dateOfDeath: String
+  firstName: String
+  id: String!
+  lastName: String
+}
+
+# Object that represents a LibriVox book
+type LibriVoxBook {
+  authors: [LibriVoxAuthor!]
+  copyrightYear: String
+  description: String
+  genres: [LibriVoxGenre!]
+  id: String!
+  language: String
+  numberOfSections: String
+  sections: [LibriVoxSection!]
+  title: String!
+  totalTime: String
+  totalTimeSecs: Float!
+  translators: [LibriVoxTranslator!]
+  urlInternetArchive: String
+  urlLibrivox: String
+  urlOther: String
+  urlProject: String
+  urlRSS: String
+  urlTextSource: String
+  urlZipFile: String
+}
+
+# Object that represents a LibriVox genre
+type LibriVoxGenre {
+  id: String!
+  name: String
+}
+
+# Object that represents a LibriVox reader
+type LibriVoxReader {
+  displayName: String
+  readerID: String
+}
+
+# Object that represents a LibriVox section
+type LibriVoxSection {
+  fileName: String
+  id: String!
+  language: String
+  listenURL: String
+  playtime: String
+  readers: [LibriVoxReader!]
+  sectionNumber: String!
+  title: String
+}
+
+# Object that represents a LibriVox translator
+type LibriVoxTranslator {
+  dateOfBirth: String
+  dateOfDeath: String
+  firstName: String
+  id: String!
+  lastName: String
+}
+
+# Object with objects of paths to images of the philosopher
+type PhilosopherImages {
+  # An object with the relative location of the face images of the philosopher
+  faceImages: FaceImages!
+
+  # An object with the relative location of the full images of the philosopher
+  fullImages: FullImages!
+
+  # An object with the relative location of the illustrations of the philosopher
+  illustrations: IllustrationImages!
+
+  # An object with the relative location of the thumbnail illustrations of the philosopher
+  thumbnailIllustrations: SmallIllustrationImages!
+}
+
+# Object with information about the location where the philosopher was born
+type PhilosopherLocation {
+  # The latitude of the location where the philosopher was born
+  latitude: Float!
+
+  # The longitude of the location where the philosopher was born
+  longitude: Float!
+
+  # The name of the location where the philosopher was born
+  name: String!
+}
+
+# A response containing information about a quote and its associated philosopher and related quotes
+type PhilosopherQuoteResponse {
+  # The unique identifier for the quote
+  id: String
+
+  # The philosopher who wrote the quote
+  philosopher: PhilosopherResponse!
+
+  # The quote text
+  quote: String!
+
+  # An array of related quotes
+  relatedQuotes: [QuoteWithPhilosopher!]
+
+  # The work the quote was written in
+  work: String
+
+  # The year the quote was written
+  year: String
+}
+
+# A response containing information about a philosopher
+type PhilosopherResponse {
+  # An array of AR objects for the philosopher
+  arObjects: [ARObjectResponse!]!
+
+  # The date the philosopher was born
+  birthDate: String
+
+  # The location of the philosopher's birth
+  birthLocation: PhilosopherLocation
+
+  # The year the philosopher was born
+  birthYear: String!
+
+  # The date the philosopher died
+  deathDate: String
+
+  # The year the philosopher died
+  deathYear: String
+
+  # An array of project gutenberg e-books by/about the philosopher
+  ebooks: [GutenbergBook!]!
+
+  # A boolean indicating whether the philosopher has e-books available
+  hasEBooks: Boolean!
+
+  # The UUID of the philosopher
+  id: String
+
+  # A link to the Internet Encyclopedia of Philosophy page for the philosopher
+  iepLink: String
+
+  # An object for images of the philosopher
+  images: PhilosopherImages!
+
+  # The philosophical interests of the philosopher
+  interests: String!
+
+  # An array of key ideas by the philosopher
+  keyIdeas: [KeyIdea!]!
+
+  # An array of audio books available for the philosopher
+  libriVoxBooks: [LibriVoxBook!]!
+
+  # An array of links to get metadata about audio books for the philosopher
+  libriVoxGetRequestLinks: [String!]!
+
+  # An array of identifiers for libravox audio books available for the philosopher
+  libriVoxIDs: [String!]!
+
+  # A string representation of the philosopher's lifespan
+  life: String!
+
+  # The name of the philosopher
+  name: String!
+
+  # An array of quotes by the philosopher
+  quotes: [Quote!]!
+
+  # The school(s) of thought the philosopher is associated with
+  school: String
+
+  # A link to the Stanford Encyclopedia of Philosophy page for the philosopher
+  speLink: String
+
+  # A description of the philosopher's philosophical work as it relates to today
+  topicalDescription: String
+
+  # The 'username' of the philosopher
+  username: String!
+
+  # The title to the Wikipedia page for the philosopher
+  wikiTitle: String!
+
+  # An array of works by the philosopher
+  works: [PhilosophicalWork!]!
+}
+
+type PhilosopherWithAudiobook {
+  audiobook: LibriVoxBook!
+  philosopher: PhilosopherResponse!
+}
+
+# Object with information about the philosophical work
+type PhilosophicalWork {
+  # A URL of the link to where the philosophical work may be purchased (typically the Apple Books Store)
+  link: String
+
+  # The title of the philosophical work
+  title: String!
+}
+
+type Query {
+  # Query for all AR objects
+  allARObjects: [ARObjectDetailsResponse!]!
+
+  # Query for all categories
+  allCategories: [CategoryDetailsResponse!]!
+
+  # Query for all key ideas
+  allKeyIdeas: [KeyIdeaWithPhilosopher!]!
+
+  # Query for all philosophers
+  allPhilosophers: [PhilosopherResponse!]!
+
+  # Query for all quotes
+  allQuotes: [PhilosopherQuoteResponse!]!
+
+  # Query for an AR object by ID
+  arObject(
+    # The ID of the AR object to query
+    idString: String!
+  ): ARObjectDetailsResponse
+
+  # Query for AR objects by name
+  arObjectByName(
+    # The name of the AR object to query
+    name: String!
+  ): ARObjectDetailsResponse!
+
+  # Query for a category by ID
+  category(
+    # The ID of the category to query
+    idString: String!
+  ): CategoryDetailsResponse
+
+  # Query for categories by name
+  categoryByName(
+    # The name of the category to query
+    name: String!
+  ): CategoryDetailsResponse!
+
+  # Query for a key idea by ID
+  keyIdea(
+    # The ID of the key idea to query
+    idString: String!
+  ): KeyIdeaDetailsResponse
+
+  # Query for key ideas by IDs
+  keyIdeas(
+    # The IDs of the key ideas to query
+    ids: [String!]!
+  ): [KeyIdeaDetailsResponse!]!
+
+  # Query for a philosopher by ID
+  philosopher(
+    # The ID of the philosopher to query
+    idString: String!
+  ): PhilosopherResponse!
+
+  # Query for philosophers by audiobook ID
+  philosopherByAudiobookID(
+    # The librivox ID of the philosopher to query
+    idString: String!
+  ): PhilosopherWithAudiobook!
+
+  # Query for philosophers by name
+  philosopherByName(
+    # The name of the philosopher to query
+    name: String!
+  ): PhilosopherResponse!
+
+  # Query for philosophers by name
+  philosopherByUsername(
+    # The name of the philosopher to query
+    name: String!
+  ): PhilosopherResponse!
+
+  # Query for philosophers by IDs
+  philosophers(
+    # The IDs of the philosophers to query
+    ids: [String!]!
+  ): [PhilosopherResponse!]!
+
+  # Query for a quote by ID
+  quote(
+    # The ID of the quote to query
+    idString: String!
+  ): PhilosopherQuoteResponse
+
+  # Query for quotes by IDs
+  quotes(
+    # The IDs of the quotes to query
+    ids: [String!]!
+  ): [PhilosopherQuoteResponse!]!
+
+  # Query for quotes for a philosopher by ID
+  quotesForPhilosopher(
+    # The ID of the philosopher to query
+    idString: String!
+  ): [PhilosopherQuoteResponse!]
+
+  # Query for random key ideas
+  randomKeyIdeas(
+    # The number of key ideas to return
+    count: Int!
+  ): [KeyIdeaDetailsResponse!]!
+
+  # Query for random philosophers
+  randomPhilosophers(
+    # The number of philosophers to return
+    count: Int!
+  ): [PhilosopherResponse!]!
+
+  # Query for random quotes
+  randomQuotes(
+    # The number of quotes to return
+    count: Int!
+  ): [PhilosopherQuoteResponse!]!
+
+  # Query for categories by search term
+  searchCategories(
+    # The search term to query
+    search: String!
+  ): [CategoryDetailsResponse!]!
+
+  # Query for key ideas by search term
+  searchKeyIdeas(
+    # The search term to query
+    search: String!
+  ): [KeyIdeaDetailsResponse!]!
+
+  # Query for philosophers by search term
+  searchPhilosophers(
+    # The search term to query
+    search: String!
+  ): [PhilosopherResponse!]!
+
+  # Query for quotes by search term
+  searchQuotes(
+    # The search term to query
+    search: String!
+  ): [PhilosopherQuoteResponse!]!
+}
+
+# Object with information about a quote
+type Quote {
+  # The UUID of the quote
+  id: String
+
+  # The UUID of the philosopher that the quote is from
+  philosopherId: String
+
+  # The quote text
+  quote: String!
+
+  # The UUIDs of the related quotes
+  relatedQuotesIds: [String!]!
+
+  # The work that the quote is from
+  work: String
+
+  # The year the quote was written
+  year: String
+}
+
+# A response containing information about a quote and its associated philosopher
+type QuoteWithPhilosopher {
+  # The unique identifier for the quote
+  id: String
+
+  # The philosopher who wrote the quote
+  philosopher: PhilosopherResponse!
+
+  # The quote text
+  quote: String!
+
+  # The work the quote was written in
+  work: String
+
+  # The year the quote was written
+  year: String
+}
+
+# Object with paths to small illustrations of the philosopher
+type SmallIllustrationImages {
+  # A 100x100px thumbnail illustration of the philosopher
+  thumbnailIll100x100: String!
+
+  # A 150x150px thumbnail illustration of the philosopher
+  thumbnailIll150x150: String!
+
+  # A 50x50px thumbnail illustration of the philosopher
+  thumbnailIll50x50: String!
+}

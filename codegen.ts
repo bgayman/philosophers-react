@@ -2,7 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: "https://philosophersapi.com/graphql",
+  schema: "src/gql/schema.graphql",
   documents: "src/**/*.{ts,tsx}",  // Simplify pattern to include .ts and .tsx files
   generates: {
     "src/gql/": {

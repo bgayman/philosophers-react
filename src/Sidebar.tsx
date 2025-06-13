@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome as faHomeSolid, faSearch as faSearchSolid, faBell as faBellSolid, faUser as faUserSolid } from '@fortawesome/free-solid-svg-icons';
-import { faBell as faBellRegular, faUser as faUserRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHome as faHomeSolid, faSearch as faSearchSolid, faBell as faBellSolid, faUser as faUserSolid, faMap as faMapSolid, faTimeline as faTimelineSolid } from '@fortawesome/free-solid-svg-icons';
+import { faBell as faBellRegular, faUser as faUserRegular, faMap as faMapRegular } from '@fortawesome/free-regular-svg-icons';
 import colors from './color'
 import QuoteHeader from './QuoteHeader';
 import { User } from './User'
@@ -16,9 +16,11 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const handlePost = () => {
-        navigate("/compose/post", { state: {
-            backgroundLocation: location
-        }});
+        navigate("/compose/post", {
+            state: {
+                backgroundLocation: location
+            }
+        });
     };
 
     return (
@@ -30,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
                 padding: '20px 0px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '5px',
+                gap: '0px',
                 position: 'sticky',
                 top: '0',
                 marginBlockStart: 'auto',
@@ -48,11 +50,11 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
                     margin: compact ? '10px 0' : '10px 30px',
                 })}
             >
-                <img 
-                    src="/icStone@100x.svg" 
-                    alt="stone logo" 
-                    width={compact ? "40px" : "80px"} 
-                    height={compact ? "40px" : "80px"} 
+                <img
+                    src="/icStone@100x.svg"
+                    alt="stone logo"
+                    width={compact ? "40px" : "80px"}
+                    height={compact ? "40px" : "80px"}
                 />
             </NavLink>
             <NavLink
@@ -137,6 +139,48 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
                     </>
                 )}
             </NavLink>
+            <NavLink
+                to="/map"
+                end
+                style={({ isActive }) => ({
+                    ...navLinkStyle,
+                    ...(isActive ? activeStyle : {}),
+                    margin: compact ? '10px 0' : '10px 30px',
+                    justifyContent: 'center',
+                })}
+                className={"nav-link"}
+            >
+                {({ isActive }) => (
+                    <>
+                        <FontAwesomeIcon
+                            icon={isActive ? faMapSolid : faMapRegular}
+                            style={{ marginRight: compact ? '0' : '10px' }}
+                        />
+                        {!compact && 'Map'}
+                    </>
+                )}
+            </NavLink>
+            <NavLink
+                to="/timeline"
+                end
+                style={({ isActive }) => ({
+                    ...navLinkStyle,
+                    ...(isActive ? activeStyle : {}),
+                    margin: compact ? '10px 0' : '10px 30px',
+                    justifyContent: 'center',
+                })}
+                className={"nav-link"}
+            >
+                {({ isActive }) => (
+                    <>
+                        <FontAwesomeIcon
+                            icon={faTimelineSolid}
+                            style={{ marginRight: compact ? '0' : '10px' }}
+                        />
+                        {!compact && 'Timeline'}
+                    </>
+                )}
+            </NavLink>
             {!compact && (
                 <button
                     style={{
@@ -159,17 +203,17 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
             )}
 
             <Spacer />
-            
+
             {!compact && (
                 <div
                     className={"nav-link"}
                     style={{
-                        marginBottom: '25px',
+                        marginBottom: '20px',
                         textDecoration: 'none',
                         color: '#333',
                     }}
                 >
-                    <QuoteHeader 
+                    <QuoteHeader
                         philosopher={{
                             id: User.current.id,
                             name: User.current.name,
@@ -179,8 +223,8 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
                                     thumbnailIll150x150: "",
                                 }
                             },
-                        }} 
-                        imageWidth='40px' 
+                        }}
+                        imageWidth='40px'
                         imageHeight='40px'
                     />
                 </div>

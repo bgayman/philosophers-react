@@ -26,7 +26,7 @@ const MobileTabBar = () => {
       borderTop: '1px solid #eee',
       padding: '8px 0',
       zIndex: 1000,
-      height: '50px',
+      height: '45px',
     }}>
       <div style={{
         display: 'flex',

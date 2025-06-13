@@ -7,7 +7,7 @@ import YouMightLike from './YouMightLike';
 
 // Inspector Component to wrap Search and TrendingTopics
 const Inspector: React.FC = () => {
-    const [trendingHashtags, setTrendingHashtags] = useState<Hashtag[]>(Hashtag.getRandomHashtags(7));  // State to track filtered hashtags
+    const [trendingHashtags, setTrendingHashtags] = useState<Hashtag[]>(Hashtag.getRandomHashtags(5));  // State to track filtered hashtags
     const navigate = useNavigate();
     const location = useLocation();
     const isSearchPath = location.pathname.startsWith('/search');
@@ -32,9 +32,11 @@ const Inspector: React.FC = () => {
             marginBlockStart: 'auto',
             padding: '20px 0px',
         }}>
-            {!isSearchPath && <SearchBar onSearch={handleSearch} resetOnSubmit={true} />}
-            <YouMightLike />
-            <TrendingTopics hashtags={trendingHashtags} />
+            <div className='inspector-content-wrapper'>
+                {!isSearchPath && <SearchBar onSearch={handleSearch} resetOnSubmit={true} />}
+                <YouMightLike />
+                <TrendingTopics hashtags={trendingHashtags} />
+            </div>
         </div>
     );
 };
