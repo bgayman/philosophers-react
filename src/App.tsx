@@ -24,6 +24,7 @@ import KeyIdea from './KeyIdea';
 import PhilosophersKeyIdeas from './PhilosophersKeyIdeas';
 import PhilosophersMap from './PhilosophersMap';
 import Timeline from './Timeline';
+import Auth from './Auth';
 
 
 function App() {
@@ -68,6 +69,7 @@ const AppContent: React.FC = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/map" element={<PhilosophersMap />} />
           <Route path="/timeline" element={<Timeline />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/profile/:username/ebooks" element={<EBooks />} />
