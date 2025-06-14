@@ -88,7 +88,29 @@ const Profile: React.FC = () => {
     const state = location.state as { backgroundLocation?: Location };
 
     // Determine if this is the current user's profile
-    const isCurrentUser = !username || username === User.current.username;
+    const isCurrentUser = !!User.current && (!username || username === User.current.username);
+
+    if (!User.current && !username) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
+                <button
+                    onClick={() => navigate('/auth')}
+                    style={{
+                        padding: '10px 20px',
+                        backgroundColor: colors.blue,
+                        color: colors.white,
+                        border: 'none',
+                        borderRadius: '30px',
+                        cursor: 'pointer',
+                        fontSize: '1em',
+                        fontWeight: 700,
+                    }}
+                >
+                    Sign In
+                </button>
+            </div>
+        );
+    }
 
     const handleBack = () => {
         navigate(-1);
@@ -142,7 +164,7 @@ const Profile: React.FC = () => {
     React.useEffect(() => {
         const originalTitle = document.title;
 
-        if (isCurrentUser) {
+        if (isCurrentUser && User.current) {
             document.title = `${User.current.name} - Philosophers`;
         } else if (data?.philosopherByUsername) {
             document.title = `${data.philosopherByUsername.name} - Philosophers`;

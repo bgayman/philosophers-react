@@ -204,7 +204,7 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
 
             <Spacer />
 
-            {!compact && (
+            {!compact && User.current && (
                 <div
                     className={"nav-link"}
                     style={{
@@ -227,6 +227,27 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
                         imageWidth='40px'
                         imageHeight='40px'
                     />
+                </div>
+            )}
+
+            {!compact && !User.current && (
+                <div style={{ margin: '0 30px 20px 30px' }}>
+                    <button
+                        onClick={() => navigate('/auth')}
+                        style={{
+                            width: '100%',
+                            padding: '10px 15px',
+                            backgroundColor: colors.blue,
+                            color: colors.white,
+                            border: 'none',
+                            borderRadius: '30px',
+                            cursor: 'pointer',
+                            fontSize: '1em',
+                            fontWeight: 700,
+                        }}
+                    >
+                        Sign In
+                    </button>
                 </div>
             )}
         </div>
