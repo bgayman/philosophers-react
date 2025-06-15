@@ -256,7 +256,7 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
             )}
 
             {!compact && !User.current && (
-                <div style={{ margin: '0 30px 20px 30px' }}>
+                <div style={{ margin: '0 30px 40px 30px' }}>
                     <button
                         onClick={() => navigate('/auth')}
                         style={{
