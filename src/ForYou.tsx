@@ -37,6 +37,11 @@ const ForYou: React.FC = () => {
   const handlePost = (text: string) => {
     const currentYear: string = new Date().getFullYear().toString();
 
+    if (!User.current) {
+      console.warn('No current user to post with.');
+      return;
+    }
+
     // Create a local instance of RandomQuote
     const mockRandomQuote: RandomQuote = {
       id: uuidv4(),
@@ -54,8 +59,8 @@ const ForYou: React.FC = () => {
         },
       },
     };
-    User.saveToLocalStorage()
-    setQuotes([mockRandomQuote, ...quotes])
+    User.saveToLocalStorage();
+    setQuotes([mockRandomQuote, ...quotes]);
   };
 
 

@@ -90,27 +90,6 @@ const Profile: React.FC = () => {
     // Determine if this is the current user's profile
     const isCurrentUser = !!User.current && (!username || username === User.current.username);
 
-    if (!User.current && !username) {
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
-                <button
-                    onClick={() => navigate('/auth')}
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: colors.blue,
-                        color: colors.white,
-                        border: 'none',
-                        borderRadius: '30px',
-                        cursor: 'pointer',
-                        fontSize: '1em',
-                        fontWeight: 700,
-                    }}
-                >
-                    Sign In
-                </button>
-            </div>
-        );
-    }
 
     const handleBack = () => {
         navigate(-1);
@@ -165,7 +144,7 @@ const Profile: React.FC = () => {
         const originalTitle = document.title;
 
         if (isCurrentUser && User.current) {
-            document.title = `${User.current.name} - Philosophers`;
+            document.title = `${User.current!.name} - Philosophers`;
         } else if (data?.philosopherByUsername) {
             document.title = `${data.philosopherByUsername.name} - Philosophers`;
         }
@@ -226,7 +205,7 @@ const Profile: React.FC = () => {
                             fontSize: '2.0em',
                             color: colors.blue,
                         }}>
-                            {User.current.name}
+                            {User.current!.name}
                         </div>
                         <div style={{
                             fontWeight: 500,
@@ -234,7 +213,7 @@ const Profile: React.FC = () => {
                             color: colors.black,
                             opacity: 0.8,
                         }}>
-                            <b>{User.current.username}</b>
+                            <b>{User.current!.username}</b>
                         </div>
                     </div>
                 </div>
@@ -497,6 +476,28 @@ const Profile: React.FC = () => {
     };
 
     // Main render
+    if (!User.current && !username) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
+                <button
+                    onClick={() => navigate('/auth')}
+                    style={{
+                        padding: '10px 20px',
+                        backgroundColor: colors.blue,
+                        color: colors.white,
+                        border: 'none',
+                        borderRadius: '30px',
+                        cursor: 'pointer',
+                        fontSize: '1em',
+                        fontWeight: 700,
+                    }}
+                >
+                    Sign In
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div>
             <div style={{
@@ -529,7 +530,7 @@ const Profile: React.FC = () => {
                         fontSize: '1.4em',
                         color: colors.black,
                     }}>
-                        {isCurrentUser ? User.current.name : data?.philosopherByUsername.name ?? ''}
+                        {isCurrentUser ? User.current!.name : data?.philosopherByUsername.name ?? ''}
                     </div>
                     {!isCurrentUser && data && <div style={{
                         fontWeight: 500,
@@ -624,7 +625,7 @@ const Profile: React.FC = () => {
                             </Modal>
                         }
                     />
-                    <Route path="/map" element={<PhilosopherBirthplaceModal username={username} />} />
+                    <Route path="/map" element={<PhilosopherBirthplaceModal username={username!} />} />
                 </Routes>
             )}
         </div>
