@@ -23,6 +23,11 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
         });
     };
 
+    const handleLogout = () => {
+        User.logout();
+        navigate('/auth');
+    };
+
     return (
         <div
             style={{
@@ -205,29 +210,49 @@ const Sidebar: React.FC<SidebarProps> = ({ compact = false }) => {
             <Spacer />
 
             {!compact && User.current && (
-                <div
-                    className={"nav-link"}
-                    style={{
-                        marginBottom: '20px',
-                        textDecoration: 'none',
-                        color: '#333',
-                    }}
-                >
-                    <QuoteHeader
-                        philosopher={{
-                            id: User.current.id,
-                            name: User.current.name,
-                            username: User.current.username,
-                            images: {
-                                thumbnailIllustrations: {
-                                    thumbnailIll150x150: "",
-                                }
-                            },
+                <>
+                    <div
+                        className={"nav-link"}
+                        style={{
+                            marginBottom: '20px',
+                            textDecoration: 'none',
+                            color: '#333',
                         }}
-                        imageWidth='40px'
-                        imageHeight='40px'
-                    />
-                </div>
+                    >
+                        <QuoteHeader
+                            philosopher={{
+                                id: User.current.id,
+                                name: User.current.name,
+                                username: User.current.username,
+                                images: {
+                                    thumbnailIllustrations: {
+                                        thumbnailIll150x150: "",
+                                    }
+                                },
+                            }}
+                            imageWidth='40px'
+                            imageHeight='40px'
+                        />
+                    </div>
+                    <div style={{ margin: '0 30px 20px 30px' }}>
+                        <button
+                            onClick={handleLogout}
+                            style={{
+                                width: '100%',
+                                padding: '10px 15px',
+                                backgroundColor: colors.blue,
+                                color: colors.white,
+                                border: 'none',
+                                borderRadius: '30px',
+                                cursor: 'pointer',
+                                fontSize: '1em',
+                                fontWeight: 700,
+                            }}
+                        >
+                            Log Out
+                        </button>
+                    </div>
+                </>
             )}
 
             {!compact && !User.current && (
