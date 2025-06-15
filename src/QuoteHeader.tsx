@@ -42,8 +42,10 @@ const QuoteHeader: React.FC<QuoteHeaderProps> = ({
   onCopy,
 }) => {
   const hasImage = philosopher.images?.thumbnailIllustrations?.thumbnailIll150x150;
-  const profilePath = User.current.id === philosopher.id ? "/profile" : `/profile/${philosopher.username}`;
-  const isOwnQuote = User.current.id === philosopher.id;
+  const profilePath = User.current && User.current.id === philosopher.id
+    ? "/profile"
+    : `/profile/${philosopher.username}`;
+  const isOwnQuote = !!User.current && User.current.id === philosopher.id;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDialogElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
