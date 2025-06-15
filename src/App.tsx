@@ -3,12 +3,13 @@ import { ApolloProvider } from '@apollo/client';
 import client from './ApolloClient'; // Import the Apollo client you just created
 import './App.css';
 import ForYou from './ForYou';
-import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, NavLink, Navigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Inspector from './Inspector';
 import Search from './Search';
 import PostInput from './PostInput';
 import Profile from './Profile';
+import { User } from './User';
 import Modal from './Modal';
 import { useLocation } from 'react-router-dom';
 import Category from './Category';
@@ -70,7 +71,7 @@ const AppContent: React.FC = () => {
           <Route path="/map" element={<PhilosophersMap />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={User.getCurrentUser() ? <Profile /> : <Navigate to="/auth" replace />} />
           <Route path="/profile/:username" element={<Profile />} />
           <Route path="/profile/:username/ebooks" element={<EBooks />} />
           <Route path="/profile/:username/keyIdeas" element={<PhilosophersKeyIdeas />} />
