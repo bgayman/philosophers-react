@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { User } from './User';
+import colors from './color';
 
 const REQUEST_LOGIN_CHALLENGE = gql`
   mutation RequestLoginChallenge($username: String!) {
@@ -99,15 +100,72 @@ const Auth: React.FC = () => {
     <div style={{ padding: '40px', textAlign: 'center' }}>
       <h2>{mode === 'login' ? 'Sign In' : 'Register'}</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={mode === 'login' ? handleLogin : handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '300px', margin: '0 auto' }}>
+      <form
+        onSubmit={mode === 'login' ? handleLogin : handleRegister}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          maxWidth: '400px',
+          margin: '0 auto',
+        }}
+      >
         {mode === 'register' && (
-          <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
+          <input
+            value={name}
+            onChange={e => setName(e.target.value)}
+            placeholder="Name"
+            style={{
+              padding: '12px',
+              fontSize: '1.2em',
+              border: '1px solid #ccc',
+              borderRadius: '8px',
+            }}
+          />
         )}
-        <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
-        <button type="submit">{mode === 'login' ? 'Login' : 'Register'}</button>
+        <input
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          placeholder="Username"
+          style={{
+            padding: '12px',
+            fontSize: '1.2em',
+            border: '1px solid #ccc',
+            borderRadius: '8px',
+          }}
+        />
+        <button
+          type="submit"
+          style={{
+            width: '100%',
+            padding: '10px 15px',
+            backgroundColor: colors.blue,
+            color: colors.white,
+            border: 'none',
+            borderRadius: '30px',
+            cursor: 'pointer',
+            fontSize: '1em',
+            fontWeight: 700,
+          }}
+        >
+          {mode === 'login' ? 'Login' : 'Register'}
+        </button>
       </form>
-      <button style={{ marginTop: '20px' }} onClick={() => setMode(mode === 'login' ? 'register' : 'login')}>
-        {mode === 'login' ? 'Need an account? Register' : 'Already have an account? Login'}
+      <button
+        style={{
+          marginTop: '20px',
+          background: 'none',
+          border: 'none',
+          color: colors.blue,
+          cursor: 'pointer',
+          textDecoration: 'underline',
+          fontSize: '1em',
+        }}
+        onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
+      >
+        {mode === 'login'
+          ? 'Need an account? Register'
+          : 'Already have an account? Login'}
       </button>
     </div>
   );
