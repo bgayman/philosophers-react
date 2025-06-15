@@ -705,3 +705,46 @@ type SmallIllustrationImages {
   # A 50x50px thumbnail illustration of the philosopher
   thumbnailIll50x50: String!
 }
+
+# Generic scalar for arbitrary JSON structures
+scalar JSON
+
+# Response returned when requesting a WebAuthn challenge
+type ChallengeResponse {
+  publicKey: JSON!
+}
+
+# Result returned after successfully completing login
+type LoginSuccess {
+  id: String
+  name: String
+  username: String
+}
+
+# Result returned after successfully completing registration
+type RegistrationSuccess {
+  id: String
+  name: String
+  username: String
+}
+
+# Basic user information
+type UserResponse {
+  id: String
+  name: String
+  username: String
+}
+
+type Mutation {
+  # Request a login challenge for the provided email
+  requestLoginChallenge(email: String!): ChallengeResponse!
+
+  # Complete a login attempt with the passkey result
+  completeLogin(credential: JSON!): LoginSuccess!
+
+  # Request a registration challenge for the provided email
+  requestRegistrationChallenge(email: String!): ChallengeResponse!
+
+  # Complete registration with the passkey result
+  completeRegistration(credential: JSON!): RegistrationSuccess!
+}
